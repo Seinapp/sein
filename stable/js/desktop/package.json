@@ -1,0 +1,48 @@
+{
+  "name": "sein",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron ."
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.10",
+    "@types/react": "^16.7.7",
+    "@types/react-dom": "^16.0.10",
+    "codelyzer": "^4.5.0",
+    "electron": "^3.0.10",
+    "node-sass": "^4.10.0",
+    "typescript": "^3.1.6"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seinapp/sein.git"
+  },
+  "author": "Melvin Laplanche",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Seinapp/sein/issues"
+  },
+  "homepage": "./"
+}
