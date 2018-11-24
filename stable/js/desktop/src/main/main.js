@@ -20,8 +20,15 @@ function createWindow() {
 
   mainWindow.loadFile('build/index.html');
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  // Open the DevTools in dev mode
+  if (isDev) {
+    // We have to open the DevTools undocked because of bugs in Electron:
+    // https://github.com/electron/electron/issues/3647
+    // Side effect of using a docked DevTools
+    // - Vibrancy appears white
+    // - Window not dragable
+    mainWindow.webContents.openDevTools({ mode: 'undocked' });
+  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
