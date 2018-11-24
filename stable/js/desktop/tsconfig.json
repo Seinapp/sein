@@ -20,5 +20,6 @@
     "outDir": "dist"
   },
   "include": ["src"],
+  "files": ["@types/custom.d.ts"],
   "exclude": ["node_modules", "src/main"]
 }
