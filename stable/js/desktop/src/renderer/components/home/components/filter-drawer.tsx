@@ -1,16 +1,16 @@
-import React, { ReactElement } from 'react';
+import React, { SFC } from 'react';
 
 import Drawer from '@material-ui/core/Drawer';
 import { Theme, withStyles, createStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-export interface MainDrawerClasses {
+export interface FilterDrawerClasses {
   drawer: any;
   drawerPaper: any;
 }
 
-export interface MainDrawerProps {
-  classes: MainDrawerClasses;
+export interface FilterDrawerProps {
+  classes: FilterDrawerClasses;
 }
 
 const drawerWidth = 240;
@@ -26,7 +26,7 @@ const styles = ({ palette, spacing }: Theme) =>
     }
   });
 
-function MainDrawer(props: MainDrawerProps): ReactElement<any> {
+const FilterDrawerCmp: SFC<FilterDrawerProps> = (props: FilterDrawerProps) => {
   const { classes } = props;
 
   return (
@@ -41,6 +41,6 @@ function MainDrawer(props: MainDrawerProps): ReactElement<any> {
       {/*  */}
     </Drawer>
   );
-}
+};
 
-export default withStyles(styles)(MainDrawer);
+export const FilterDrawer = withStyles(styles)(FilterDrawerCmp);
