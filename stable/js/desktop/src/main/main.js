@@ -14,7 +14,8 @@ function createWindow() {
     width: 800,
     height: 600,
     vibrancy: 'light', // ultra-dark for macOS' dark-mode
-    backgroundColor: '#00000000'
+    backgroundColor: '#00000000',
+    titleBarStyle: 'hiddenInset'
   });
 
   mainWindow.loadFile('build/index.html');

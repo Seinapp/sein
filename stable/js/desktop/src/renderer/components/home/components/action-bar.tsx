@@ -4,7 +4,6 @@ import { Theme, withStyles, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import MenuItem from '@material-ui/core/MenuList';
 import InputBase from '@material-ui/core/InputBase';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -17,6 +16,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 interface ActionBarClasses {
   root: any;
   appBar: any;
+  toolbar: any;
   grow: any;
   search: any;
   searchIcon: any;
@@ -38,7 +38,11 @@ const styles = ({
 }: Theme) =>
   createStyles({
     appBar: {
+      WebkitAppRegion: 'drag',
       zIndex: zIndex.drawer + 1
+    },
+    toolbar: {
+      paddingLeft: '64px'
     },
     root: {
       flexGrow: 1
@@ -93,13 +97,7 @@ const ActionBarCmp: SFC<ActionBarProps> = (props: ActionBarProps) => {
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed">
-        <Toolbar>
-          <MenuItem>
-            <IconButton color="inherit">
-              <AddIcon />
-            </IconButton>
-          </MenuItem>
-
+        <Toolbar variant="dense" className={classes.toolbar}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -112,23 +110,24 @@ const ActionBarCmp: SFC<ActionBarProps> = (props: ActionBarProps) => {
               }}
             />
           </div>
+
+          <IconButton color="inherit">
+            <AddIcon />
+          </IconButton>
+
           <div className={classes.grow} />
 
-          <MenuItem>
-            <IconButton color="inherit">
-              <SyncIcon />
-            </IconButton>
-          </MenuItem>
-          <MenuItem>
-            <IconButton color="inherit">
-              <SyncIssueIcon />
-            </IconButton>
-          </MenuItem>
-          <MenuItem>
-            <IconButton color="inherit">
-              <SettingsIcon />
-            </IconButton>
-          </MenuItem>
+          <IconButton color="inherit">
+            <SyncIcon />
+          </IconButton>
+
+          <IconButton color="inherit">
+            <SyncIssueIcon />
+          </IconButton>
+
+          <IconButton color="inherit">
+            <SettingsIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>
