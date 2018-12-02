@@ -1,0 +1,28 @@
+{
+  "name": "sein-helper",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "proto-utils": "protoc --go_out=plugins=grpc:$GOPATH/src protodef/utils.proto",
+    "proto-auth": "protoc --go_out=plugins=grpc:$GOPATH/src protodef/auth.proto",
+    "proto": "npm run proto-auth; npm run proto-utils",
+    "build": "go build -o bin/sein-helper -tags osusergo ./src "
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seinapp/sein.git"
+  },
+  "author": "Melvin Laplanche",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Seinapp/sein/issues"
+  },
+  "homepage": "https://github.com/Seinapp/sein",
+  "files": [
+    "./index.js",
+    "./bin/"
+  ]
+}

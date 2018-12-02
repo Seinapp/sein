@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "github.com/Seinapp/sein/stable/go/desktop-helper/src/services/auth";
+
+// Auth represents the authentication server
+service Auth {
+  rpc SignIn(SignInRequest) returns (SignInResponse) {}
+  rpc SignOut(SignOutRequest) returns (SignOutResponse) {}
+  rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse) {}
+}
+
+message SignInRequest {
+  int32 master_password = 1;
+}
+
+message SignInResponse {
+  string client_token = 1;
+  int32 alive_until = 2;
+}
+
+message SignOutRequest {
+  int32 client_token = 1;
+}
+
+message SignOutResponse {
+}
+
+message KeepAliveRequest {
+  int32 client_token = 1;
+}
+
+message KeepAliveResponse {
+  int32 alive_until = 1;
+}

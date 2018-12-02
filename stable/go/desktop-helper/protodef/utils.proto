@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package utils;
+option go_package = "github.com/Seinapp/sein/stable/go/desktop-helper/src/services/utils";
+
+// Utils represents the a server used to do utilities tasks
+service Utils {
+  rpc Ping(PingRequest) returns (PingResponse) {}
+}
+
+message PingRequest {
+}
+
+message PingResponse {
+}
