@@ -29,22 +29,19 @@ func startCmd(env *string) *cobra.Command {
 	// flags
 	port := cmd.Flags().IntP("port", "p", 51556, "port to use")
 	asDaemon := cmd.Flags().BoolP("daemon", "d", false, "start the server as a daemon")
-	attach := cmd.Flags().BoolP("attach-if-exists", "a", false, "start the server as a daemon")
 
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
-		return start(*env, *port, *asDaemon, *attach)
+		return start(*env, *port, *asDaemon)
 	}
 	return cmd
 }
 
-func start(env string, port int, asDaemon, attach bool) error {
+func start(env string, port int, asDaemon bool) error {
 	isRunning, _, err := server.RunningServer(env, cliLogger)
 	if err != nil {
 		return err
 	}
 
-	// TODO(melvin): Return nil if asDaemon=true and attach=false
-	//if srv.IsRunning() && asDaemon {
 	if isRunning {
 		if asDaemon {
 			startSuccessResponse(port)
@@ -58,7 +55,7 @@ func start(env string, port int, asDaemon, attach bool) error {
 		return errors.Wrap(err, "Could not create a new server")
 	}
 	if asDaemon {
-		return srv.Daemonize()
+		return srv.Daemonize(port)
 	}
 
 	// once we return we need to make sure we remove the file

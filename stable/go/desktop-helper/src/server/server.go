@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"os/exec"
+	"strconv"
 	"time"
 
 	"github.com/Seinapp/sein/stable/go/desktop-helper/src/config"
@@ -169,17 +171,40 @@ func (s *Server) Run(port int) error {
 	return nil
 }
 
-// Attach re-attaches a daemon
-func (s *Server) Attach() error {
-	// TODO(melvin): implement
-	return nil
-}
+// Daemonize starts the server in another process
+func (s *Server) Daemonize(port int) error {
+	helperBinPath, err := os.Executable()
+	if err != nil {
+		return errors.Wrap(err, "could not find the path to the current exec")
+	}
 
-// Daemonize detaches a daemon
-func (s *Server) Daemonize() error {
-	// TODO(melvin): implement
-	// os.startProcess
-	return nil
+	// run the server
+	cmd := exec.Command(helperBinPath, "start", "-p", strconv.Itoa(port))
+	if err = cmd.Start(); err != nil {
+		return errors.Wrap(err, "could not start the server")
+	}
+	s.process = cmd.Process
+
+	// Now we cannot actually wait for the response since it's a long
+	// lasting process, so we're just going to wait a few seconds to see
+	// if the server created the a process info file, and we'll try to ping
+	// the server
+	var isRunning bool
+	var errCheck error
+
+	timeout := time.Now().Add(5 * time.Second)
+	for time.Now().Before(timeout) {
+		isRunning, _, errCheck = RunningServer(s.Env, s.CLILogger)
+		if isRunning {
+			return nil
+		}
+		time.Sleep(1 * time.Second)
+	}
+
+	if errCheck == nil {
+		return errors.New("timeout trying to start the server")
+	}
+	return errCheck
 }
 
 // Stop stops the gRPC server
