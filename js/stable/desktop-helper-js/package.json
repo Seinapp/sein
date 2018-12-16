@@ -7,18 +7,18 @@
   "scripts": {
     "build": "tsc",
     "proto": "npm run proto-code && npm run proto-types ",
-    "proto-code": "protoc -I ../../go/desktop-helper/protodef --js_out=import_style=commonjs,binary:./lib/pb --grpc_out=./lib/pb --plugin=protoc-gen-grpc=./node_modules/grpc-tools/bin/grpc_node_plugin {auth,utils}.proto",
-    "proto-types": "protoc -I ../../go/desktop-helper/protodef --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_out=./@types {auth,utils}.proto"
+    "proto-code": "protoc -I ../../../go/stable/desktop-helper/protodef --js_out=import_style=commonjs,binary:./lib/pb --grpc_out=./lib/pb --plugin=protoc-gen-grpc=./node_modules/grpc-tools/bin/grpc_node_plugin {auth,utils}.proto",
+    "proto-types": "protoc -I ../../../go/stable/desktop-helper/protodef --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_out=./@types {auth,utils}.proto"
   },
   "dependencies": {
     "get-port": "^4.0.0",
+    "google-protobuf": "^3.6.1",
     "grpc": "^1.16.1",
-    "sein-helper": "file:../../go/desktop-helper"
+    "sein-helper": "file:../../../go/stable/desktop-helper"
   },
   "devDependencies": {
     "@types/get-port": "^4.0.0",
     "@types/node": "^10.12.12",
-    "google-protobuf": "^3.6.1",
     "grpc-tools": "^1.6.6",
     "grpc_tools_node_protoc_ts": "^2.4.1",
     "sein-tslint": "file:../shared/tslint",
