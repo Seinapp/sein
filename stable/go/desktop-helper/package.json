@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "proto-utils": "protoc --go_out=plugins=grpc:$GOPATH/src protodef/utils.proto",
     "proto-auth": "protoc --go_out=plugins=grpc:$GOPATH/src protodef/auth.proto",
@@ -10,7 +11,9 @@
     "build": "go build -o bin/sein-helper -tags osusergo ./src "
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "tslint": "^5.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Seinapp/sein.git"
